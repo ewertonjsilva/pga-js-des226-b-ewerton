@@ -1,6 +1,4 @@
-let entrada = require('prompt-sync')(); 
-
-
+const entrada = require('prompt-sync')(); 
 
 /*
     O Math.random() gera um número entre 0 e 1. 
@@ -18,11 +16,18 @@ let entrada = require('prompt-sync')();
 // Gera valor aleatório entre 0 e 1
 const bloqueado = Math.round(Math.random());
 
-let idade = entrada('Digite a idade de quem vai entrar: '); 
-let acompanhado = entrada('Está acompanhado dos pais? Digite S/N: '); 
+const idade = entrada('Digite a idade de quem vai entrar: '); 
+const acompanhado = entrada('Está acompanhado dos pais? Digite S/N: '); 
 
-let entradaBloqueada = bloqueado == 1 ? true : false;
-let entradaAcompanhado = acompanhado == 
-    acompanhado.toLocaleLowerCase == 's' ? true : false;
+const entradaBloqueada = bloqueado == 1 ? true : false;
+const entradaAcompanhado = acompanhado.toLocaleLowerCase() == 's' ? true : false;
 
-
+if ((idade >= 18 || idade < 18 && entradaAcompanhado) && !entradaBloqueada ) {
+    console.log(`Entra`);    
+    // console.log(`Entrada bloqueada: ${entradaBloqueada}`);    
+} else {
+    const motivo1 = idade < 18 && !entradaAcompanhado ? '\nMenor não acompanhado' : '';
+    const motivo2 = entradaBloqueada ? '\nAcesso bloqueado pelo sistema' : '';
+    console.log(`Não entra, porque: ${motivo1} ${motivo2}`);
+    // console.log(`Entrada bloqueada: ${entradaAcompanhado}`); 
+}
